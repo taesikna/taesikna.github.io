@@ -12,13 +12,13 @@
 <link rel="canonical" href="https://taesikna.github.io/resize_images.html">
 
         <meta name="author" content="Taesik Na" />
-        <meta name="description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API would be used to do this. Please check the official documents for this API here When we check the official documents, resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …" />
+        <meta name="description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …" />
 
         <meta property="og:site_name" content="Taesik's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Tensorflow resize_images"/>
         <meta property="og:url" content="https://taesikna.github.io/resize_images.html"/>
-        <meta property="og:description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API would be used to do this. Please check the official documents for this API here When we check the official documents, resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …"/>
+        <meta property="og:description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …"/>
         <meta property="article:published_time" content="2017-10-26" />
             <meta property="article:section" content="posts" />
             <meta property="article:author" content="Taesik Na" />
@@ -102,9 +102,9 @@ Taesik's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>When we deal with the size of the image in Tensorflow, tf.image.resize_images() API would be used to do this.
-Please check the official documents for this API <a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images">here</a>
-When we check the official documents, resize_images() has the form of</p>
+                <p>When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done.
+Please check the official documents for this API <a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images">here</a>.
+In the official documents, we know that resize_images() has the form of</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">resize_images</span><span class="p">(</span>
     <span class="n">images</span><span class="p">,</span>
     <span class="n">size</span><span class="p">,</span>
@@ -170,26 +170,6 @@ I had to slice the tensor into two groups, so the necessary code snippet would b
   </ul>
 </li>
 <!-- End Sidebar/Social -->
-
-<!-- Sidebar/Links -->
-<li class="list-group-item">
-  <h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
-  <ul class="list-group" id="links">
-    <li class="list-group-item">
-      <a href="http://getpelican.com/" target="_blank">Pelican</a>
-    </li>
-    <li class="list-group-item">
-      <a href="http://python.org/" target="_blank">Python.org</a>
-    </li>
-    <li class="list-group-item">
-      <a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a>
-    </li>
-    <li class="list-group-item">
-      <a href="#" target="_blank">You can modify those links in your config file</a>
-    </li>
-  </ul>
-</li>
-<!-- End Sidebar/Links -->
   </ul>
 </section>
 <!-- End Sidebar -->            </aside>
