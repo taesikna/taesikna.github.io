@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Taesik's Blog - posts</title><link href="https://taesikna.github.io/" rel="alternate"></link><link href="https://taesikna.github.io/feeds/posts.atom.xml" rel="self"></link><id>https://taesikna.github.io/</id><updated>2017-10-26T00:00:00-04:00</updated><entry><title>Tensorflow resize_images</title><link href="https://taesikna.github.io/resize_images.html" rel="alternate"></link><published>2017-10-26T00:00:00-04:00</published><updated>2017-10-26T00:00:00-04:00</updated><author><name>Taesik Na</name></author><id>tag:taesikna.github.io,2017-10-26:/resize_images.html</id><summary type="html">&lt;p&gt;When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done.
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Taesik's Blog - posts</title><link href="https://taesikna.github.io/" rel="alternate"></link><link href="https://taesikna.github.io/feeds/posts.atom.xml" rel="self"></link><id>https://taesikna.github.io/</id><updated>2017-10-26T00:00:00-04:00</updated><entry><title>Tensorflow resize_images</title><link href="https://taesikna.github.io/resize_images.html" rel="alternate"></link><published>2017-10-26T00:00:00-04:00</published><updated>2017-10-26T00:00:00-04:00</updated><author><name>Taesik Na</name></author><id>tag:taesikna.github.io,2017-10-26:/resize_images.html</id><summary type="html">&lt;p&gt;When we deal with the size of the images in Tensorflow, tf.image.resize_images() API will get the job done.
 Please check the official documents for this API &lt;a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images"&gt;here&lt;/a&gt;.
 In the official documents, we know that resize_images() has the form of&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;resize_images&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ResizeMethod&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BILINEAR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;align_corners&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done.
+    &lt;span class="n"&gt;align_corners&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;When we deal with the size of the images in Tensorflow, tf.image.resize_images() API will get the job done.
 Please check the official documents for this API &lt;a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images"&gt;here&lt;/a&gt;.
 In the official documents, we know that resize_images() has the form of&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;resize_images&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
@@ -26,7 +26,7 @@ In the official documents, we know that resize_images() has the form of&lt;/p&gt
 &lt;li&gt;&lt;code&gt;align_corners&lt;/code&gt;: bool. If true, exactly align all 4 corners of the input and output. Defaults to false.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note that &lt;code&gt;size&lt;/code&gt; argument is also the tensor.&lt;/p&gt;
-&lt;p&gt;I had to perform random down-sampling for given images tensor, So the necessary code snippet would be,&lt;/p&gt;
+&lt;p&gt;I had to perform random down-sampling for given images tensor, so the necessary code snippet would be,&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;  &lt;span class="c1"&gt;# assuming &amp;#39;images&amp;#39; has the shape [batch_size, height, width, channels]&lt;/span&gt;
   &lt;span class="n"&gt;images_shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
   &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image_shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;

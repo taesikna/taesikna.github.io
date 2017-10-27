@@ -13,13 +13,13 @@
 
         <meta name="author" content="Taesik Na" />
         <meta name="keywords" content="python,tensorflow,resize,images" />
-        <meta name="description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …" />
+        <meta name="description" content="When we deal with the size of the images in Tensorflow, tf.image.resize_images() API will get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …" />
 
         <meta property="og:site_name" content="Taesik's Blog" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Tensorflow resize_images"/>
         <meta property="og:url" content="https://taesikna.github.io/resize_images.html"/>
-        <meta property="og:description" content="When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …"/>
+        <meta property="og:description" content="When we deal with the size of the images in Tensorflow, tf.image.resize_images() API will get the job done. Please check the official documents for this API here. In the official documents, we know that resize_images() has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR, align_corners=False …"/>
         <meta property="article:published_time" content="2017-10-26" />
             <meta property="article:section" content="posts" />
             <meta property="article:tag" content="python" />
@@ -115,7 +115,7 @@ Taesik's Blog            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>When we deal with the size of the image in Tensorflow, tf.image.resize_images() API could get the job done.
+                <p>When we deal with the size of the images in Tensorflow, tf.image.resize_images() API will get the job done.
 Please check the official documents for this API <a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images">here</a>.
 In the official documents, we know that resize_images() has the form of</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">resize_images</span><span class="p">(</span>
@@ -135,7 +135,7 @@ In the official documents, we know that resize_images() has the form of</p>
 <li><code>align_corners</code>: bool. If true, exactly align all 4 corners of the input and output. Defaults to false.</li>
 </ul>
 <p>Note that <code>size</code> argument is also the tensor.</p>
-<p>I had to perform random down-sampling for given images tensor, So the necessary code snippet would be,</p>
+<p>I had to perform random down-sampling for given images tensor, so the necessary code snippet would be,</p>
 <div class="highlight"><pre>  <span class="c1"># assuming &#39;images&#39; has the shape [batch_size, height, width, channels]</span>
   <span class="n">images_shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
   <span class="n">height</span> <span class="o">=</span> <span class="n">image_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
