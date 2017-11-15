@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Installing Tensorflow from source - Taesik's Blog</title>
+    <title>Tensorflow resize_images - Taesik's Blog</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,22 +9,23 @@
 
 
 
-<link rel="canonical" href="https://taesikna.github.io/./resize_images.html">
+<link rel="canonical" href="https://taesikna.github.io/resize_images.html">
 
         <meta name="author" content="Taesik Na" />
-        <meta name="keywords" content="python,tensorflow,install" />
-        <meta name="description" content="I always see this warning whenever I run the tensorflow. 2017-11-15 13:29:14.393804: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA So, I&#39;ve decided to re-install tensorflow from source …" />
+        <meta name="keywords" content="python,tensorflow,resize,images" />
+        <meta name="description" content="When we deal with the size of the images in Tensorflow, tf.image.resize_images API will get the job done. Please check the official documents for this API here. In the official documents, we know that tf.image.resize_images has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR …" />
 
         <meta property="og:site_name" content="Taesik's Blog" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Installing Tensorflow from source"/>
-        <meta property="og:url" content="https://taesikna.github.io/./resize_images.html"/>
-        <meta property="og:description" content="I always see this warning whenever I run the tensorflow. 2017-11-15 13:29:14.393804: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA So, I&#39;ve decided to re-install tensorflow from source …"/>
-        <meta property="article:published_time" content="2017-11-15" />
+        <meta property="og:title" content="Tensorflow resize_images"/>
+        <meta property="og:url" content="https://taesikna.github.io/resize_images.html"/>
+        <meta property="og:description" content="When we deal with the size of the images in Tensorflow, tf.image.resize_images API will get the job done. Please check the official documents for this API here. In the official documents, we know that tf.image.resize_images has the form of def resize_images( images, size, method=ResizeMethod.BILINEAR …"/>
+        <meta property="article:published_time" content="2017-10-26" />
             <meta property="article:section" content="posts" />
             <meta property="article:tag" content="python" />
             <meta property="article:tag" content="tensorflow" />
-            <meta property="article:tag" content="install" />
+            <meta property="article:tag" content="resize" />
+            <meta property="article:tag" content="images" />
             <meta property="article:author" content="Taesik Na" />
 
 
@@ -83,10 +84,10 @@ Taesik's Blog            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="https://taesikna.github.io/./resize_images.html"
+                    <a href="https://taesikna.github.io/resize_images.html"
                        rel="bookmark"
-                       title="Permalink to Installing Tensorflow from source">
-                        Installing Tensorflow from source
+                       title="Permalink to Tensorflow resize_images">
+                        Tensorflow resize_images
                     </a>
                 </h1>
             </header>
@@ -96,7 +97,7 @@ Taesik's Blog            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2017-11-15T00:00:00-05:00"> Wed 15 November 2017</time>
+        <i class="fa fa-calendar"></i><time datetime="2017-10-26T00:00:00-04:00"> Thu 26 October 2017</time>
     </span>
 
 
@@ -108,131 +109,60 @@ Taesik's Blog            </a>
         /
 	<a href="https://taesikna.github.io/tag/tensorflow.html">tensorflow</a>
         /
-	<a href="https://taesikna.github.io/tag/install.html">install</a>
-    <span class="label label-default">Lang</span>
-	<a href="https://taesikna.github.io/./resize_images.html">en</a>
-
+	<a href="https://taesikna.github.io/tag/resize.html">resize</a>
+        /
+	<a href="https://taesikna.github.io/tag/images.html">images</a>
+    
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>I always see this warning whenever I run the tensorflow.</p>
-<div class="highlight"><pre>2017-11-15 13:29:14.393804: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+                <p>When we deal with the size of the images in Tensorflow, <code>tf.image.resize_images</code> API will get the job done.
+Please check the official documents for this API <a href="https://www.tensorflow.org/api_docs/python/tf/image/resize_images">here</a>.
+In the official documents, we know that <code>tf.image.resize_images</code> has the form of</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">resize_images</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">ResizeMethod</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">,</span>
+    <span class="n">align_corners</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
 </pre></div>
 
 
-<p>So, I've decided to re-install tensorflow from source to see if I can enable advanced CPU instructions that are available.
-First I've downloaded the tensorflow git repository.</p>
-<div class="highlight"><pre>$ git clone https://github.com/tensorflow/tensorflow
+<p>where the arguments are,</p>
+<ul>
+<li><code>images</code>: 4-D Tensor of shape [batch, height, width, channels] or 3-D Tensor of shape [height, width, channels].</li>
+<li><code>size</code>: A 1-D int32 Tensor of 2 elements: new_height, new_width. The new size for the images.</li>
+<li><code>method</code>: ResizeMethod. Defaults to ResizeMethod.BILINEAR.</li>
+<li><code>align_corners</code>: bool. If true, exactly align all 4 corners of the input and output. Defaults to false.</li>
+</ul>
+<p>Note that <code>size</code> argument is also the tensor.</p>
+<p>I had to perform random down-sampling for given images tensor, so the necessary code snippet would be,</p>
+<div class="highlight"><pre>  <span class="c1"># assuming &#39;images&#39; has the shape [batch_size, height, width, channels]</span>
+  <span class="n">images_shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">image_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="n">width</span> <span class="o">=</span> <span class="n">image_shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+  <span class="c1"># randomly select subsample factor to be 2 or 4</span>
+  <span class="n">subsample</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">([],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> 
+  <span class="n">down_height</span><span class="p">,</span> <span class="n">down_width</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">subsample</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+                              <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">to_int32</span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_int32</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span>
+                              <span class="k">lambda</span><span class="p">:</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">to_int32</span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mi">4</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">to_int32</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mi">4</span><span class="p">)))</span>
+  <span class="n">downsampled_images</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize_images</span><span class="p">(</span><span class="n">images</span><span class="p">,</span>
+                                        <span class="p">[</span><span class="n">down_height</span><span class="p">,</span> <span class="n">down_width</span><span class="p">])</span>
 </pre></div>
 
 
-<p>Next, configure the installation</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cd</span> <span class="n">tensorflow</span>  <span class="err">#</span> <span class="n">cd</span> <span class="n">to</span> <span class="n">the</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">directory</span> <span class="n">created</span>
-<span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">configure</span>
-<span class="n">You</span> <span class="n">have</span> <span class="n">bazel</span> <span class="mf">0.7.0</span> <span class="n">installed</span><span class="p">.</span>
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">location</span> <span class="n">of</span> <span class="n">python</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span><span class="p">]</span><span class="o">:</span> 
-
-
-<span class="n">Found</span> <span class="n">possible</span> <span class="n">Python</span> <span class="n">library</span> <span class="nl">paths</span><span class="p">:</span>
-  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span>
-  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">tna6</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">research</span><span class="o">/</span><span class="n">slim</span>
-  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span>
-  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">tna6</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">models</span>
-  <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">caffe</span><span class="o">/</span><span class="n">python</span>
-  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">tna6</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">cleverhans</span>
-  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">tna6</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">research</span>
-  <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">tna6</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">R</span><span class="o">-</span><span class="n">FCN</span><span class="o">/</span><span class="n">lib</span>
-<span class="n">Please</span> <span class="n">input</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">Python</span> <span class="n">library</span> <span class="n">path</span> <span class="n">to</span> <span class="n">use</span><span class="p">.</span>  <span class="n">Default</span> <span class="n">is</span> <span class="p">[</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="p">]</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">jemalloc</span> <span class="n">as</span> <span class="n">malloc</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">jemalloc</span> <span class="n">as</span> <span class="n">malloc</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">Google</span> <span class="n">Cloud</span> <span class="n">Platform</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">Google</span> <span class="n">Cloud</span> <span class="n">Platform</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">Hadoop</span> <span class="n">File</span> <span class="n">System</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">Hadoop</span> <span class="n">File</span> <span class="n">System</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">Amazon</span> <span class="n">S3</span> <span class="n">File</span> <span class="n">System</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">Y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">Amazon</span> <span class="n">S3</span> <span class="n">File</span> <span class="n">System</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">XLA</span> <span class="n">JIT</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">No</span> <span class="n">XLA</span> <span class="n">JIT</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">GDR</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">No</span> <span class="n">GDR</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">VERBS</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">No</span> <span class="n">VERBS</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">OpenCL</span> <span class="n">SYCL</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">No</span> <span class="n">OpenCL</span> <span class="n">SYCL</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">CUDA</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> <span class="n">Y</span>
-<span class="n">CUDA</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">CUDA</span> <span class="n">SDK</span> <span class="n">version</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="mf">7.0</span><span class="p">.</span> <span class="p">[</span><span class="n">Leave</span> <span class="n">empty</span> <span class="n">to</span> <span class="k">default</span> <span class="n">to</span> <span class="n">CUDA</span> <span class="mf">8.0</span><span class="p">]</span><span class="o">:</span> 
-
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">location</span> <span class="n">where</span> <span class="n">CUDA</span> <span class="mf">8.0</span> <span class="n">toolkit</span> <span class="n">is</span> <span class="n">installed</span><span class="p">.</span> <span class="n">Refer</span> <span class="n">to</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="p">]</span><span class="o">:</span> 
-
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">cuDNN</span> <span class="n">version</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span><span class="p">.</span> <span class="p">[</span><span class="n">Leave</span> <span class="n">empty</span> <span class="n">to</span> <span class="k">default</span> <span class="n">to</span> <span class="n">cuDNN</span> <span class="mf">6.0</span><span class="p">]</span><span class="o">:</span> <span class="mf">5.1</span>
-
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">location</span> <span class="n">where</span> <span class="n">cuDNN</span> <span class="mf">5.1</span> <span class="n">library</span> <span class="n">is</span> <span class="n">installed</span><span class="p">.</span> <span class="n">Refer</span> <span class="n">to</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="p">]</span><span class="o">:</span>
-
-
-<span class="n">Invalid</span> <span class="n">path</span> <span class="n">to</span> <span class="n">cuDNN</span> <span class="mf">5.1</span> <span class="n">toolkit</span><span class="p">.</span> <span class="n">None</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">files</span> <span class="n">can</span> <span class="n">be</span> <span class="nl">found</span><span class="p">:</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="mf">8.0</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">libcudnn</span><span class="p">.</span><span class="n">so</span><span class="mf">.5.1</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="mf">8.0</span><span class="o">/</span><span class="n">libcudnn</span><span class="p">.</span><span class="n">so</span><span class="mf">.5.1</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="mf">8.0</span><span class="o">/</span><span class="n">targets</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libcudnn</span><span class="p">.</span><span class="n">so</span><span class="mf">.5.1</span>
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">cuDNN</span> <span class="n">version</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span><span class="p">.</span> <span class="p">[</span><span class="n">Leave</span> <span class="n">empty</span> <span class="n">to</span> <span class="k">default</span> <span class="n">to</span> <span class="n">cuDNN</span> <span class="mf">6.0</span><span class="p">]</span><span class="o">:</span> <span class="mf">5.1.10</span>
-
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">location</span> <span class="n">where</span> <span class="n">cuDNN</span> <span class="mf">5.1.10</span> <span class="n">library</span> <span class="n">is</span> <span class="n">installed</span><span class="p">.</span> <span class="n">Refer</span> <span class="n">to</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">cuda</span><span class="p">]</span><span class="o">:</span>
-
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">comma</span><span class="o">-</span><span class="n">separated</span> <span class="n">Cuda</span> <span class="n">compute</span> <span class="n">capabilities</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">build</span> <span class="n">with</span><span class="p">.</span>
-<span class="n">You</span> <span class="n">can</span> <span class="n">find</span> <span class="n">the</span> <span class="n">compute</span> <span class="n">capability</span> <span class="n">of</span> <span class="n">your</span> <span class="n">device</span> <span class="nl">at</span><span class="p">:</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//developer.nvidia.com/cuda-gpus.</span>
-<span class="n">Please</span> <span class="n">note</span> <span class="n">that</span> <span class="n">each</span> <span class="n">additional</span> <span class="n">compute</span> <span class="n">capability</span> <span class="n">significantly</span> <span class="n">increases</span> <span class="n">your</span> <span class="n">build</span> <span class="n">time</span> <span class="n">and</span> <span class="n">binary</span> <span class="n">size</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="nl">is</span><span class="p">:</span> <span class="mf">6.1</span><span class="p">,</span><span class="mf">6.1</span><span class="p">]</span>    
-
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">use</span> <span class="n">clang</span> <span class="n">as</span> <span class="n">CUDA</span> <span class="n">compiler</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">nvcc</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span> <span class="n">as</span> <span class="n">CUDA</span> <span class="n">compiler</span><span class="p">.</span>
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">which</span> <span class="n">gcc</span> <span class="n">should</span> <span class="n">be</span> <span class="n">used</span> <span class="n">by</span> <span class="n">nvcc</span> <span class="n">as</span> <span class="n">the</span> <span class="n">host</span> <span class="n">compiler</span><span class="p">.</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">gcc</span><span class="p">]</span><span class="o">:</span> 
-
-
-<span class="n">Do</span> <span class="n">you</span> <span class="n">wish</span> <span class="n">to</span> <span class="n">build</span> <span class="n">TensorFlow</span> <span class="n">with</span> <span class="n">MPI</span> <span class="n">support</span><span class="o">?</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">N</span><span class="p">]</span><span class="o">:</span> 
-<span class="n">No</span> <span class="n">MPI</span> <span class="n">support</span> <span class="n">will</span> <span class="n">be</span> <span class="n">enabled</span> <span class="k">for</span> <span class="n">TensorFlow</span><span class="p">.</span>
-
-<span class="n">Please</span> <span class="n">specify</span> <span class="n">optimization</span> <span class="n">flags</span> <span class="n">to</span> <span class="n">use</span> <span class="n">during</span> <span class="n">compilation</span> <span class="n">when</span> <span class="n">bazel</span> <span class="n">option</span> <span class="s">&quot;--config=opt&quot;</span> <span class="n">is</span> <span class="n">specified</span> <span class="p">[</span><span class="n">Default</span> <span class="n">is</span> <span class="o">-</span><span class="n">march</span><span class="o">=</span><span class="n">native</span><span class="p">]</span><span class="o">:</span> 
-
-
-<span class="n">Add</span> <span class="s">&quot;--config=mkl&quot;</span> <span class="n">to</span> <span class="n">your</span> <span class="n">bazel</span> <span class="n">command</span> <span class="n">to</span> <span class="n">build</span> <span class="n">with</span> <span class="n">MKL</span> <span class="n">support</span><span class="p">.</span>
-<span class="n">Please</span> <span class="n">note</span> <span class="n">that</span> <span class="n">MKL</span> <span class="n">on</span> <span class="n">MacOS</span> <span class="n">or</span> <span class="n">windows</span> <span class="n">is</span> <span class="n">still</span> <span class="n">not</span> <span class="n">supported</span><span class="p">.</span>
-<span class="n">If</span> <span class="n">you</span> <span class="n">would</span> <span class="n">like</span> <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">local</span> <span class="n">MKL</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">downloading</span><span class="p">,</span> <span class="n">please</span> <span class="n">set</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variable</span> <span class="s">&quot;TF_MKL_ROOT&quot;</span> <span class="n">every</span> <span class="n">time</span> <span class="n">before</span> <span class="n">build</span><span class="p">.</span>
-<span class="n">Configuration</span> <span class="n">finished</span>
+<p>Don't be confused with tensor indexing!!
+When we slice the tensor, the indexing should be done with actual integer form.
+I had to slice the tensor into two groups, so the necessary code snippet would be,</p>
+<div class="highlight"><pre>    <span class="n">predictions_shape</span> <span class="o">=</span> <span class="n">class_predictions_with_background</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
+    <span class="n">first_half_class_predictions_with_background</span> \
+        <span class="o">=</span> <span class="n">class_predictions_with_background</span><span class="p">[:</span><span class="n">predictions_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">second_half_class_predictions_with_background</span> \ 
+        <span class="o">=</span> <span class="n">class_predictions_with_background</span><span class="p">[</span><span class="n">predictions_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">:]</span>
 </pre></div>
 
 
-<p>Build pip script:</p>
-<div class="highlight"><pre>$ bazel build -c opt --copt<span class="o">=</span>-mavx --copt<span class="o">=</span>-mavx2 --copt<span class="o">=</span>-mfma --copt<span class="o">=</span>-mfpmath<span class="o">=</span>both --copt<span class="o">=</span>-msse4.1 --copt<span class="o">=</span>-msse4.2 --config<span class="o">=</span>cuda -k //tensorflow/tools/pip_package:build_pip_package
-</pre></div>
-
-
-<p>It took 1973.924s to build the pip script.
-Build the pip package:</p>
-<div class="highlight"><pre>$ bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-</pre></div>
-
-
-<p>Install the pip package:</p>
-<div class="highlight"><pre>sudo pip install /tmp/tensorflow_pkg/tensorflow-1.4.0-cp27-cp27mu-linux_x86_64.whl
-</pre></div>
-
-
-<p>Now, we're done !!!!</p>
+<p>Note that, we should get the shape of the tensor as list.</p>
             </div>
             <!-- /.entry-content -->
         </article>
